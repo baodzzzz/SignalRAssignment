@@ -1,0 +1,67 @@
+﻿@page
+@model SignalRAssignment.Pages.Admin.Products.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>ProductManagement</h1>
+
+<div class="col-sm-12" style="padding:20px">
+    <a asp-page="Create" class="btn bg-success">Create New</a>
+    <div id="viewAll" class="card-body table-responsive"></div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].QuantityPerUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].UnitPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].ProductImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Category)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Product[0].Supplier)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Product) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuantityPerUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductImage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supplier.SupplierId)
+            </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@item.ProductId" class="btn btn-info text-white">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.ProductId" class="btn bg-warning">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.ProductId" class="btn btn-danger text-white">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

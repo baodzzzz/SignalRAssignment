@@ -1,0 +1,55 @@
+﻿@page
+@model SignalRAssignment.Pages.Admin.Members.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>AccountManagement</h1>
+
+<div class="col-sm-12" style="padding:20px">
+    <a asp-page="Create" class="btn bg-success">Create New</a>
+    <div id="viewAll" class="card-body table-responsive"></div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].Password)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Account[0].Type)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Account) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.UserName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Password)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@item.AccountId" class="btn btn-info text-white">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.AccountId" class="btn bg-warning">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.AccountId" class="btn btn-danger text-white">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

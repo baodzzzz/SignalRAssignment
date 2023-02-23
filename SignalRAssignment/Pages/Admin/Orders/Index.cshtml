@@ -1,0 +1,67 @@
+﻿@page
+@model SignalRAssignment.Pages.Admin.Orders.IndexModel
+
+@{
+    ViewData["Title"] = "Orders";
+}
+
+<h1>OrderManagement</h1>
+
+<div class="col-sm-12" style="padding:20px">
+    <a asp-page="Create" class="btn bg-success">Create New</a>
+    <div id="viewAll" class="card-body table-responsive"></div>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].OrderDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].RequiredDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].ShippedDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Freight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].ShipAddress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order[0].Customer)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Order) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RequiredDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShippedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Freight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShipAddress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Customer.CustomerId)
+            </td>
+            <td>
+                    <a asp-page="./Edit" asp-route-id="@item.OrderId" class="btn btn-info text-white">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.OrderId" class="btn bg-warning">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.OrderId" class="btn btn-danger text-white">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
